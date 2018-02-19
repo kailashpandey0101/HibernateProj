@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- SQL dialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Employee?createDatabaseIfNotExist=true</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">pandey321</property>
+
+ 		<property name="hibernate.hbm2ddl.auto">create</property>
+
+
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">true</property>
+
+		<!-- Include all the mapping pojo classes -->
+		<mapping class="com.imcs.maven.hib.pojo.Customer" />
+		<mapping class="com.imcs.maven.hib.pojo.Orders" />
+		<mapping class="com.imcs.maven.hib.pojo.OrdersProducts" />
+		<mapping class="com.imcs.maven.hib.pojo.Products" />  
+	</session-factory> 
+</hibernate-configuration>
