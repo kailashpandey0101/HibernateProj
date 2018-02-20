@@ -8,7 +8,13 @@ public class CustomerApp {
 
 	public static void main(String[] args) {
 		ICustomerDao customerDao = new CustomerDao();
-		Customer customer = new Customer("Kailash", "Pandey", "abc@xy.com", "imcs", "123", "dallas", "texas", "70987");
+		Customer customer = new Customer();
+		customer.setFirstName("Kailash");
+		customer.setLastName("Pandey");
+		customer.setEmail("xyz@abc.com");
+		
+		//Address address=new Address();
+		//customer.setAddress(address);
 
 		customerDao.addCustomer(customer);
 

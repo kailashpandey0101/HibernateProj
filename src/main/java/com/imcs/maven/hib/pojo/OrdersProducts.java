@@ -27,7 +27,7 @@ public class OrdersProducts {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "order_product_id")
-	private int orderProductId;
+	private Integer orderProductId;
 
 	private int quantity;
 

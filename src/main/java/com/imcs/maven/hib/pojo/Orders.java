@@ -34,7 +34,7 @@ public class Orders {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "order_id")
-	private int orderId;
+	private Integer orderId;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "invoice_date")

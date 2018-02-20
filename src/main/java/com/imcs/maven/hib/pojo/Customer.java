@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -28,29 +29,6 @@ public class Customer {
 	@Column(name = "customer_id")
 	private long custId;
 
-	/**
-	 * @param firstName
-	 * @param lastName
-	 * @param email
-	 * @param company
-	 * @param street
-	 * @param city
-	 * @param state
-	 * @param zipCode
-	 */
-
-	public Customer(String firstName, String lastName, String email, String company, String street, String city,
-			String state, String zipCode) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.company = company;
-		this.street = street;
-		this.city = city;
-		this.state = state;
-		this.zipCode = zipCode;
-	}
 
 	/**
 	 * 
@@ -67,14 +45,9 @@ public class Customer {
 	private String lastName;
 
 	private String email;
-
-	private String company;
-	private String street;
-	private String city;
-	private String state;
-
-	@Column(name = "zip_code")
-	private String zipCode;
+	
+	/*@OneToOne(mappedBy="customer",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	private Address address;*/
 
 	@OneToMany
 	@JoinColumn(name = "customer_id")
