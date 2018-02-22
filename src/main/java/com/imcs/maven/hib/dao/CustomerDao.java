@@ -1,13 +1,23 @@
 package com.imcs.maven.hib.dao;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.imcs.maven.hib.Util.HibernateUtils;
 import com.imcs.maven.hib.pojo.Customer;
+import com.imcs.maven.hib.pojo.Products;
 
 public class CustomerDao implements ICustomerDao {
 
+	public Session saveObject(Customer customer) {
+		Session session = getSession();
+		session.save(customer);
+		return session;
+	}
 	public void addCustomer(Customer customer) {
 		Session session = getSession();
 		Transaction transaction = session.beginTransaction();
@@ -61,6 +71,7 @@ public class CustomerDao implements ICustomerDao {
 		}
 
 	}
+
 
 	private Session getSession() {
 		return HibernateUtils.getSessionFactory().openSession();

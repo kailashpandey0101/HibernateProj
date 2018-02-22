@@ -8,11 +8,11 @@
 		<!-- SQL dialect -->
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Employee?createDatabaseIfNotExist=true</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/customer?createDatabaseIfNotExist=true</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">pandey321</property>
 
- 		<property name="hibernate.hbm2ddl.auto">create</property>
+ 		<!--  <property name="hibernate.hbm2ddl.auto">create</property> -->
 
 
 		<!-- Echo all executed SQL to stdout -->
@@ -20,6 +20,7 @@
 
 		<!-- Include all the mapping pojo classes -->
 		<mapping class="com.imcs.maven.hib.pojo.Customer" />
+		<mapping class="com.imcs.maven.hib.pojo.Address" />
 		<mapping class="com.imcs.maven.hib.pojo.Orders" />
 		<mapping class="com.imcs.maven.hib.pojo.OrdersProducts" />
 		<mapping class="com.imcs.maven.hib.pojo.Products" />  

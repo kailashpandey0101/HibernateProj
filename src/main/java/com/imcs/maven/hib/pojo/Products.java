@@ -1,5 +1,8 @@
 package com.imcs.maven.hib.pojo;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Access;
@@ -16,11 +19,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Access(AccessType.FIELD)
 @Table(name = "products")
-@Data
+@Getter @Setter
+@ToString(exclude="ordersProducts")
 public class Products {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,8 +40,7 @@ public class Products {
 
 	private double price;
 
-	@OneToMany
-	@JoinColumn(name = "product_id")
-	private Set<OrdersProducts> ordersProducts;
+	@OneToMany(fetch=FetchType.EAGER,mappedBy = "products",cascade={CascadeType.ALL})
+	private Set<OrdersProducts> ordersProducts=new HashSet<OrdersProducts>();
 
 }

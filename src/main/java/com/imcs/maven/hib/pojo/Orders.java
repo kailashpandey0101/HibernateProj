@@ -1,6 +1,9 @@
 package com.imcs.maven.hib.pojo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Access;
@@ -25,16 +28,24 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Access(AccessType.FIELD)
 @Table(name = "orders")
-@Data
+@Getter @Setter
+@ToString(exclude="ordersProducts")
 public class Orders {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "order_id")
 	private Integer orderId;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "customer_id", nullable = false)
+	private Customer customer;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "invoice_date")
@@ -47,12 +58,15 @@ public class Orders {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "payement_date")
 	private Date paymentDate;
+	
+	@Column(name="total_price")
+	private double totalPrice;
 
-	@Column(name = "custom_message")
-	private String customMessage;
+	private String status;
 
-	@OneToMany
-	@JoinColumn(name = "order_id")
-	private Set<OrdersProducts> ordersProducts;
+	@OneToMany(fetch=FetchType.EAGER,mappedBy = "orders", cascade={CascadeType.ALL})
+	private Set<OrdersProducts> ordersProducts=new HashSet<OrdersProducts>();
+
+
 
 }

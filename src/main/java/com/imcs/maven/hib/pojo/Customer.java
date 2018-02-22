@@ -1,5 +1,6 @@
 package com.imcs.maven.hib.pojo;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Access;
@@ -17,11 +18,15 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Access(AccessType.FIELD)
 @Table(name = "customer")
-@Data
+@Getter @Setter
+@ToString(exclude="orders")
 public class Customer {
 
 	@Id
@@ -46,11 +51,13 @@ public class Customer {
 
 	private String email;
 	
-	/*@OneToOne(mappedBy="customer",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	private Address address;*/
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name="address_id")
+	private Address address;
 
-	@OneToMany
-	@JoinColumn(name = "customer_id")
-	private Set<Orders> orders;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer",cascade=CascadeType.ALL)
+	private Set<Orders> orders=new HashSet<Orders>();
 
+
+	
 }

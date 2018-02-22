@@ -1,5 +1,7 @@
 package com.imcs.maven.hib.dao;
 
+import org.hibernate.Session;
+
 import com.imcs.maven.hib.pojo.Customer;
 
 public interface ICustomerDao {
