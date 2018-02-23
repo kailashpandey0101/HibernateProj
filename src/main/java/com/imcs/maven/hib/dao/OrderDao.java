@@ -35,7 +35,7 @@ public class OrderDao implements IOrderDao {
 		Session session = getSession();
 		Transaction transaction = session.beginTransaction();
 		try {
-			Orders order = (Orders) getSession().get(Orders.class, id);
+			Orders order = (Orders) session.get(Orders.class, id);
 			session.delete(order);
 			transaction.commit();
 		} catch (Exception e) {

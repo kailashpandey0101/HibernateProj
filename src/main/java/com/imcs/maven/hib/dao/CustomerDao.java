@@ -55,7 +55,7 @@ public class CustomerDao implements ICustomerDao {
 		Session session = getSession();
 		Transaction transaction = session.beginTransaction();
 		try {
-			Customer customer = (Customer) getSession().get(Customer.class, id);
+			Customer customer = (Customer) session.get(Customer.class, id);
 			session.delete(customer);
 			transaction.commit();
 		} catch (Exception e) {
