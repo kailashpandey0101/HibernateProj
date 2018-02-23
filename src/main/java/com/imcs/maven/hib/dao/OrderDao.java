@@ -123,7 +123,7 @@ public class OrderDao implements IOrderDao {
 		Session session = getSession();
 		Transaction transaction = session.beginTransaction();
 		try {
-			Query query = session.createQuery("from Order o where o.totalPrice >:totalPrice");
+			Query query = session.createQuery("from Orders o where o.totalPrice >:totalPrice");
 			query.setParameter("totalPrice", price);
 			@SuppressWarnings("unchecked")
 			List<Orders> orders = query.list();
