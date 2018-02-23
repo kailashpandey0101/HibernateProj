@@ -10,9 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.imcs.maven.hib.Util.HibernateUtils;
-import com.imcs.maven.hib.pojo.Customer;
 import com.imcs.maven.hib.pojo.Orders;
-import com.imcs.maven.hib.pojo.Products;
 
 public class OrderDao implements IOrderDao {
 
@@ -81,7 +79,9 @@ public class OrderDao implements IOrderDao {
 		Transaction transaction = session.beginTransaction();
 		try {
 			Criteria criteria = session.createCriteria(Orders.class);
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			criteria.add(Restrictions.between("invoiceDate", d1, d2));
+			
 			@SuppressWarnings("unchecked")
 			List<Orders> orders = criteria.list();
 			return orders;
