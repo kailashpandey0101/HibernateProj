@@ -102,6 +102,7 @@ public class OrderDao implements IOrderDao {
 		Transaction transaction = session.beginTransaction();
 		try {
 			Criteria criteria = session.createCriteria(Orders.class);
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			criteria.add(Restrictions.between("deliverDate", d1, d2));
 			@SuppressWarnings("unchecked")
 			List<Orders> orders = criteria.list();
@@ -141,6 +142,7 @@ public class OrderDao implements IOrderDao {
 		Transaction transaction=session.beginTransaction();
 		try{
 			Criteria criteria=session.createCriteria(Orders.class);
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			criteria.add(Restrictions.like("status", status));
 			
 			@SuppressWarnings("unchecked")
